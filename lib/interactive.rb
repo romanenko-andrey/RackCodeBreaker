@@ -21,7 +21,6 @@ class Interactive
   def initialize
     @name = EMPTY_NAME
     @status = nil
-    puts "Initialize WebConsole"
     start
   end
 
