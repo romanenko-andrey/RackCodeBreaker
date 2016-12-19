@@ -1,9 +1,13 @@
 Rack codebreaker
 
-use
+add to Gemfile:
+    gem 'rack'
+    gem 'colorize'
+    gem 'rav_codebreaker'
 
-    gem install rack
-    gem install rav_codebreaker
-    gem install erb
 
-rakeup
+run in console: rakeup
+
+run in c9: rails s -p $PORT -b $IP
+https://rack-codebreaker-aromanenko.c9users.io/
+
