@@ -11,9 +11,9 @@
       <h1>CODEBREAKER GAME</h1>
       <h2>Welcome to play the CodeBreaker Game!!!</h2>
 
-      <a href="/show_help"><%= @@help_string %> help</a>
+      <a href=<%= "/show_help?help_string=#{@help_string}" %>><%= @help_string %> help</a>
 
-      <% if @@help_string == 'Hide' %>
+      <% if @help_string == 'Hide' %>
 	      <p>Codebreaker is a logic game in which a code-breaker tries to break a secret code created by a code-maker.</p>
 	      <p>
 	        The code-maker, which will be played by the application we’re going to write, creates a secret code of four numbers between 1 and 6.<br>
@@ -28,7 +28,7 @@
 
       <form id="new_game" method="post" action="/new_game">
         <p>
-          <label><b>Please enter your name:</b><input class="text_input" name="name" type="text"></label>
+          <label><b>Please enter your name </b><input class="text_input" name="name" type="text"></label>
         </p>
         <b>Please select the game level:</b><br>
         <div>

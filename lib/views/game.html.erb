@@ -6,49 +6,49 @@
 </head>
 <body>
 <div id="container">
-  <h1>Hello, <%= @web.name %>!</h1>
+  <h1>Hello, <%= web.name %>!</h1>
 
   <div class="invitation">
-    <p>You have <%= @web.game.turns_left %> attempts and <%= @web.game.hints_left %> hints. Good luck</p>
+    <p>You have <%= web.game.turns_left %> attempts and <%= web.game.hints_left %> hints. Good luck</p>
 
-    <% @web.hints.length.times do |index| %>
+    <% web.hints.length.times do |index| %>
       <p class="hint">
-        <%= @web.hints[index] %>
+        <%= web.hints[index] %>
       </p>
     <% end %>
 
   </div>
 
-  <% if @web.status != :first_step && @web.status != :hint %>
+  <% if web.status != :first_step && web.status != :hint %>
     <h2>
-      You said <span class="text_input">" <%= @web.game.offer %> "</span>
-      <% unless @web.game.format_error? %>
-         Your result is <span class="text_input">" <%= @web.game.decode_offer %> "</span>
+      You said <span class="text_input">" <%= web.game.offer %> "</span>
+      <% unless web.game.format_error? %>
+         Your result is <span class="text_input">" <%= web.game.decode_offer %> "</span>
       <% end %>
     </h2>
   <% end %>
 
-  <% if @web.status == :playing && @web.game.format_error? %>
+  <% if web.status == :playing && web.game.format_error? %>
     <div class="message error">Incorrect number format, try again, please...!</div>
   <% end %>
 
-  <% if @web.game.win? || @web.game.game_over? %>
+  <% if web.game.win? || web.game.game_over? %>
     
-    <% if @web.game.win? %>
+    <% if web.game.win? %>
       <div class="message win">Congradulations. You've win!!!</div>
     <% end %>
 
-    <% if @web.game.game_over? %>
+    <% if web.game.game_over? %>
       <div class="message error">
         Sorry, you lose the game :( <br>
-        The secret code was <%= @web.game.secret_code %>
+        The secret code was <%= web.game.secret_code %>
       </div>
     <% end %>
 
   <% else %>
     <p>Pleace try to find the secret code</p>
     <p>only 4 numbers (from 0 to 6):</p>
-    <form method="post" action="/update_game">
+    <form method="post" action=<%= "/update_game?name=#{web.name}" %>>
       <input class="text_input" name="guess" type="text">
       <input class="button try_button" type="submit" value="SEND">
     </form>
@@ -56,16 +56,17 @@
 
   <a class="button" href="/">Start new game</a>
 
-  <% if @web.show_hints_button? %>
-    <a class="button" href="/show_hint">Show hint</a>
+  <% if web.show_hints_button? %>
+    <a class="button" href=<%= "/show_hint?name=#{web.name}" %>>Show hint</a>
+
   <% end %>  
 
-  <% if @web.game.win? || @web.game.game_over? %>
-    <a class="button" href="/show_res">Show results</a>
+  <% if web.game.win? || web.game.game_over? %>
+    <a class="button" href=<%= "/show_res?name=#{web.name}" %>>Show results</a>
   <% end %>  
 
-  <% if @web.game.win? %>
-    <a class="button" href="/save_res">Save results</a>
+  <% if web.game.win? %>
+    <a class="button" href=<%= "/save_res?name=#{web.name}" %>>Save results</a>
   <% end %>  
 </div>
 </body>

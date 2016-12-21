@@ -1,27 +1,18 @@
 require 'rav_codebreaker'
 
-
-#module RavCodebreaker
-#  def self.play(level)
-#    begin
-#      console = Console.new(level)
-#      console.play
-#    end while console.again?
-#  end
-#end
-
-#RavCodebreaker.play(:beginner)
 class Interactive
-  EMPTY_NAME = 'Anonymous player'
+  EMPTY_NAME = 'Anonymous'
   SCORES_FILE_NAME = './score.dat'
 
   attr_accessor :level, :status
   attr_reader :game, :name, :hints, :score
 
-  def initialize
-    @name = EMPTY_NAME
-    @status = nil
-    start
+  def initialize(name, level)
+    @name = name
+    @name = EMPTY_NAME if name == ''
+    @status = :new_game
+    @level = level.to_sym
+    start(@level)
   end
 
   def start(level = :expert)
@@ -35,7 +26,6 @@ class Interactive
   def set_offer(offer)
     @game.offer = offer
     @game.next_turn unless @game.format_error?
-    puts "You result is \"#{@game.decode_offer}\"!"
   end
 
   def name=(name)
@@ -61,7 +51,6 @@ class Interactive
     File.open(SCORES_FILE_NAME, 'w+') do |file|
       Marshal.dump(@score, file)
     end
-    #binding.pry
   end
 
   def load_scores_from_file
