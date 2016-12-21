@@ -1,21 +1,17 @@
 Rack codebreaker
 
-add in GemFile
+add to Gemfile:
+    gem 'rack'
+    gem 'colorize'
+    gem 'rav_codebreaker'
 
-   gem 'rack'
-   gem 'colorize'
-   gem 'rav_codebreaker'
+run in console: rakeup
 
-Running program:
+run in c9: rails s -p $PORT -b $IP
 
-   https://rack-codebreaker-aromanenko.c9users.io/
+https://rack-codebreaker-aromanenko.c9users.io/
+  
+https://github.com/romanenko1976/RackCodeBreaker.git
 
-   https://rav-codebreaker.herokuapp.com/
-
-Repositories:
-
-   https://git.heroku.com/rav-codebreaker.git
-   
-   https://github.com/romanenko1976/RackCodeBreaker.git
 
 
