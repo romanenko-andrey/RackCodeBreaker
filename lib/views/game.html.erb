@@ -6,6 +6,7 @@
 </head>
 <body>
 <div id="container">
+
   <h1>Hello, <%= web.name %>!</h1>
 
   <div class="invitation">
@@ -14,6 +15,7 @@
     <% web.hints.length.times do |index| %>
       <p class="hint">
         <%= web.hints[index] %>
+
       </p>
     <% end %>
 
@@ -58,7 +60,6 @@
 
   <% if web.show_hints_button? %>
     <a class="button" href=<%= "/show_hint?name=#{web.name}" %>>Show hint</a>
-
   <% end %>  
 
   <% if web.game.win? || web.game.game_over? %>
