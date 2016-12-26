@@ -1,17 +1,19 @@
 require 'rav_codebreaker'
+require 'securerandom'
 
 class Interactive
   EMPTY_NAME = 'Anonymous'
-  SCORES_FILE_NAME = './score.dat'
+  SCORES_FILE_NAME = './lib/score.dat'
 
   attr_accessor :level, :status
-  attr_reader :game, :name, :hints, :score
+  attr_reader :game, :name, :hints, :score, :id
 
   def initialize(name, level)
     @name = name
     @name = EMPTY_NAME if name == ''
     @status = :new_game
     @level = level.to_sym
+    @id = SecureRandom.uuid
     start(@level)
   end
 
@@ -53,15 +55,15 @@ class Interactive
     end
   end
 
+  def show_hints_button?
+     game.hints_left>0 && !game.win? && !game.game_over? 
+  end
+
   def load_scores_from_file
     return unless File.exist? SCORES_FILE_NAME
     File.open(SCORES_FILE_NAME) do |file|
       @score = Marshal.load(file)
     end
-  end
-
-  def show_hints_button?
-     game.hints_left>0 && !game.win? && !game.game_over? 
   end
 
 end

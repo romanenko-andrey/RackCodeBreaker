@@ -61,7 +61,6 @@ a {
 
 .try_button{
   padding: 5px 20px;
-
 }
 
 .button:hover {
@@ -71,9 +70,9 @@ a {
 }
 
 #new_game input[type=radio]{
-  display: none;
+  width: 0;
+  margin:0;
 }
-
 
 #new_game #level1:checked~label[for=level1] {background-color: #4B7399; color: white;}
 #new_game #level2:checked~label[for=level2] {background-color: #4B7399; color: white;}
