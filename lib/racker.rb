@@ -2,7 +2,7 @@ require_relative 'interactive'
 require 'erb'
 
 class Racker
-  GAMES_FILE_NAME = './lib/games.dat'
+  GAMES_FILE_NAME = './lib/db/games.dat'
 
   def self.call(env)
     new(env).router.finish

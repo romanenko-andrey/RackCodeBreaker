@@ -3,7 +3,7 @@ require 'securerandom'
 
 class Interactive
   EMPTY_NAME = 'Anonymous'
-  SCORES_FILE_NAME = './lib/score.dat'
+  SCORES_FILE_NAME = './lib/db/score.dat'
 
   attr_accessor :level, :status
   attr_reader :game, :name, :hints, :score, :id
