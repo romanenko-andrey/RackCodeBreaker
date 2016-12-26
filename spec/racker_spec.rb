@@ -3,13 +3,23 @@ Capybara.app_host = "http://localhost:9292"
 
 
 RSpec.describe Racker do
-#  def app
-#    Rack::Builder.parse_file('config.ru').first
-#  end
 
-#  def setup
-#    Capybara.app = Sinatra::Application.new
-#  end
+  context 'after correct answer input' do
+    before do
+      allow_any_instance_of(RavCodebreaker::Game).to receive(:win?).and_return(true)
+      allow_any_instance_of(Object).to receive(:win?).and_return(true)
+      visit '/'
+      fill_in 'name', :with => 'Andrii'
+      find('label.button', text:'expert').click
+      click_button 'Start'
+    end
+
+    it "have to displays congradulation message" do
+      fill_in 'guess', :with => '1111'
+      click_on 'SEND'
+      expect( find('#container').text ).to match(/Congradulations. You've win!!!/)
+    end
+  end
 
   context 'unknown path' do
     it "return PageNotFound status code (404)" do
@@ -98,22 +108,11 @@ RSpec.describe Racker do
     end
 
     context 'start with correct initial values' do
-      it 'test' do
+      it 'when correct user name' do
         expect(page).to have_content('Hello, Andrii!')
       end
       it 'new page have to start on selected level' do
         expect(page).to have_content('You have 10 attempts and 0 hints.')
-      end
-    end
-
-    context 'after correct answer input' do
-      it "have to displays congradulation message" do
-        allow_any_instance_of(RavCodebreaker::Game).to receive(:win?).and_return(true)
-        allow_any_instance_of(Object).to receive(:win?).and_return(true)
-
-        fill_in 'guess', :with => '1111'
-        click_on 'SEND'
-        expect( find('#container').text ).to match(/Congradulations. You've win!!!/)
       end
     end
   end
