@@ -43,12 +43,14 @@ class Interactive
 
   def save_results
     load_scores_from_file
+    return if @score.detect{ |rec| rec[:id] == @id }
     player = {}
     player[:name] = @name
     player[:level] = @game.level
     player[:turns] = RavCodebreaker::Game::TURNS_COUNT[@game.level] - @game.turns_left
     player[:hints] = RavCodebreaker::Game::HINTS_COUNT[@game.level] - @game.hints_left
     player[:time] = Time.new
+    player[:id] = @id
     @score << player
     File.open(SCORES_FILE_NAME, 'w+') do |file|
       Marshal.dump(@score, file)

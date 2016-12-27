@@ -45,7 +45,7 @@
 
   <% if web.game.win? || web.game.game_over? %>
     <% if web.game.win? %>
-      <div class="message win">Congradulations. You've win!!!</div>
+      <div class="message win">Congratulations. You've win!!!</div>
     <% end %>
     <% if web.game.game_over? %>
       <div class="message error">
@@ -68,9 +68,7 @@
     <a class="button" href=<%= "/show_hint?id=#{web.id}" %>>Show hint</a>
   <% end %>
 
-  <% if web.game.win? || web.game.game_over? %>
-    <a class="button" href=<%= "/show_res?id=#{web.id}" %>>Show results</a>
-  <% end %>  
+  <a class="button" href=<%= "/show_res?id=#{web.id}" %>>Show results</a>
 
   <% if web.game.win? %>
     <a class="button" href=<%= "/save_res?id=#{web.id}" %>>Save results</a>

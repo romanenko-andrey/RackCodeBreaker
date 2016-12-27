@@ -14,10 +14,10 @@ RSpec.describe Racker do
       click_button 'Start'
     end
 
-    it "have to displays congradulation message" do
+    it "have to displays congratulation message" do
       fill_in 'guess', :with => '1111'
       click_on 'SEND'
-      expect( find('#container').text ).to match(/Congradulations. You've win!!!/)
+      expect( find('#container').text ).to match(/Congratulations. You've win!!!/)
     end
   end
 

@@ -1,5 +1,6 @@
 require_relative 'interactive'
 require 'erb'
+require 'pry'
 
 class Racker
   GAMES_FILE_NAME = './lib/db/games.dat'
@@ -34,8 +35,10 @@ class Racker
   end
 
   def router
-    redirect_to '/' if @login.nil? || @login.empty?
-    case @request.path
+    path = @request.path
+    exception = ['/', '/show_help', '/new_game']
+    path = 'error' if web == nil && !exception.include?(path)
+    case path
       when '/' then render('index.html.erb')
       when '/new_game' then start_new_game
       when '/show_help' then show_help
@@ -48,13 +51,19 @@ class Racker
   end
 
   def start_new_game
-    new_game = Interactive.new(@request.params['name'], @request.params['level'])
-    @login = new_game.id
-    @games[@login] = new_game
-    web.start(web.level)
-    web.status = :first_step
-    save_players_status
-    render('game.html.erb')
+    name = @request.params['name']
+    level = @request.params['level']
+    if name && level
+      new_game = Interactive.new(name, level)
+      @login = new_game.id
+      @games[@login] = new_game
+      web.start(web.level)
+      web.status = :first_step
+      save_players_status
+      render('game.html.erb')
+    else
+      Rack::Response.new('Error in params. Name or level params not found!', 404)
+    end
   end
 
   def show_help
@@ -70,8 +79,10 @@ class Racker
   end
 
   def update_game
-    web.set_offer(@request.params['guess'] ||= '')
-    web.status = :playing
+    if @request.params['guess']
+      web.set_offer(@request.params['guess'])
+      web.status = :playing
+    end
     save_players_status
     render('game.html.erb')
   end
