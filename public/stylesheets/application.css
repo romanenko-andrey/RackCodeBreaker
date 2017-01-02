@@ -1,0 +1,102 @@
+* {
+ box-sizing: border-box;
+}
+
+body {
+  background-color: #4B7399;
+  font-family: Verdana;
+  font-size: 14px;
+}
+
+#container {
+  width: 75%;
+  margin: 0 auto;
+  background-color: #FFF;
+  padding: 20px 40px;
+  border: solid 1px black;
+  margin-top: 20px;
+}
+
+a {
+  color: #0000FF;
+}
+
+.message {
+  border: solid 1px black;
+  padding:10px;
+  font-size:16px;
+  color: white;
+  text-align: center
+}
+
+.error {
+  background-color: #F00; 
+}
+
+.win{
+  background-color: #3A3;
+  text-transform: uppercase;
+}
+
+.invitation {
+  font-size:16px;
+  color: green;
+}
+
+.button {
+  display: inline-block;
+  font-size: large;
+  color: black;
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 3px;
+  cursor: pointer;
+  margin: 10px 0;
+  text-decoration: none;
+  -moz-transition:background-color 0.3s; 
+  -o-transition:background-color 0.3s; 
+  -webkit-transition:background-color 0.3s; 
+  transition: background-color 0.3s; 
+}
+
+.try_button{
+  padding: 5px 20px;
+}
+
+.button:hover {
+  background-color: #4B7399;
+  border: 1px solid #4B7399;
+  color: white;
+}
+
+#new_game input[type=radio]{
+  width: 0;
+  margin:0;
+}
+
+#new_game #level1:checked~label[for=level1] {background-color: #4B7399; color: white;}
+#new_game #level2:checked~label[for=level2] {background-color: #4B7399; color: white;}
+#new_game #level3:checked~label[for=level3] {background-color: #4B7399; color: white;}
+
+.text_input {
+  content: "";
+  text-align: center;
+  font-size: large;
+  padding: 5px;
+  border: 1px solid black;
+  width: 140px;
+  display: inline-block;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #4B7399;
+  color:white;
+}
+
+th, td {
+  padding: 6px 18px;
+}

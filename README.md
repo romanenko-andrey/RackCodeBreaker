@@ -1,8 +1,10 @@
-Rack codebreaker
+#Rack codebreaker
 
-use
+https://rav-codebreaker.herokuapp.com/
 
-gem install rav_codebreaker
-gem install erb
+https://rack-codebreaker-aromanenko.c9users.io/
 
-rakeup
+
+
+
+

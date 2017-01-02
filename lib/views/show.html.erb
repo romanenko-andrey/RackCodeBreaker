@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Codebreaker results</title>
+  <link rel="stylesheet" href="/stylesheets/application.css" type="text/css">
+</head>
+<body>
+<div id="container">
+  <h1>CodeBreaker winners list</h1>
+  <table border="1">
+    <tr>
+      <th>Time</th>
+      <th>Name</th>
+      <th>Level</th>
+      <th>Turns</th>
+      <th>Hints</th>
+
+    </tr>
+    <% web.score.each do |result| %>
+      <tr class="">
+        <td><%= result[:time].asctime %></td>
+        <td><%= result[:name] %></td>
+        <td><%= result[:level] %></td>
+        <td><%= result[:turns] %></td>
+        <td><%= result[:hints] %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <a class="button" href="/">Start new game</a>
+  <a class="button" href=<%= "/update_game?id=#{web.id}" %>>Return</a>
+</div>
+</body>
+</html>
